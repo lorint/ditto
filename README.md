@@ -13,3 +13,7 @@ git push branchname
 git checkout master
 git pull
 (see the new edits from the branch added to your local waster)
+
+Completed last night::
+project scope
+presentation
