@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Match Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Match</th>
+      <th>Event</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @match_events.each do |match_event| %>
+      <tr>
+        <td><%= match_event.match_id %></td>
+        <td><%= match_event.event_id %></td>
+        <td><%= link_to 'Show', match_event %></td>
+        <td><%= link_to 'Edit', edit_match_event_path(match_event) %></td>
+        <td><%= link_to 'Destroy', match_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Match event', new_match_event_path %>

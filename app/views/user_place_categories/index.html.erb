@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing User Place Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Userplace</th>
+      <th>Placecat</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_place_categories.each do |user_place_category| %>
+      <tr>
+        <td><%= user_place_category.userplace_id %></td>
+        <td><%= user_place_category.placecat_id %></td>
+        <td><%= link_to 'Show', user_place_category %></td>
+        <td><%= link_to 'Edit', edit_user_place_category_path(user_place_category) %></td>
+        <td><%= link_to 'Destroy', user_place_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User place category', new_user_place_category_path %>

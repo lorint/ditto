@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_place.user_id %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @user_place.place_id %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @user_place.desc %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @user_place.rating %>
+</p>
+
+<%= link_to 'Edit', edit_user_place_path(@user_place) %> |
+<%= link_to 'Back', user_places_path %>

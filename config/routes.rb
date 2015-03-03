@@ -1,4 +1,26 @@
 Rails.application.routes.draw do
+  resources :match_events
+
+  resources :events
+
+  resources :user_place_category_matches
+
+  resources :matches
+
+  resources :user_place_categories
+
+  resources :place_categories
+
+  resources :categories
+
+  resources :user_places
+
+  resources :photos
+
+  resources :places
+
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

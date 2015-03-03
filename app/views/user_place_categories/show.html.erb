@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Userplace:</strong>
+  <%= @user_place_category.userplace_id %>
+</p>
+
+<p>
+  <strong>Placecat:</strong>
+  <%= @user_place_category.placecat_id %>
+</p>
+
+<%= link_to 'Edit', edit_user_place_category_path(@user_place_category) %> |
+<%= link_to 'Back', user_place_categories_path %>

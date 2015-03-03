@@ -1,0 +1,25 @@
+<%= form_for(@user_place_category_match) do |f| %>
+  <% if @user_place_category_match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_place_category_match.errors.count, "error") %> prohibited this user_place_category_match from being saved:</h2>
+
+      <ul>
+      <% @user_place_category_match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :match_id %><br>
+    <%= f.number_field :match_id %>
+  </div>
+  <div class="field">
+    <%= f.label :upc_id %><br>
+    <%= f.number_field :upc_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

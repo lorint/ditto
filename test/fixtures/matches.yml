@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user1_id: 1
+  user2_id: 1
+  upcm_id: 1
+  user1_rslt: false
+  user2_rslt: false
+
+two:
+  user1_id: 1
+  user2_id: 1
+  upcm_id: 1
+  user1_rslt: false
+  user2_rslt: false
