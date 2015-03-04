@@ -1,0 +1,13 @@
+
+
+yelp_consumer_key: "VTuV_f_P9oDTGJHEAsh-7Q"
+yelp_consumer_secret: "jmsVWhC7D1YTMHXTt7mf9x5g4Fs"
+yelp_token: "Pmk35JV-ParB5QXtYuwluJF-BmkHKg2g"
+yelp_token_secret: "45n6ZsM-CCvDCdMwpG-RTiWkJhc"
+
+
+test:
+  yelp_consumer_key: "VTuV_f_P9oDTGJHEAsh-7Q"
+  yelp_consumer_secret: "jmsVWhC7D1YTMHXTt7mf9x5g4Fs"
+  yelp_token: "Pmk35JV-ParB5QXtYuwluJF-BmkHKg2g"
+  yelp_token_secret: "45n6ZsM-CCvDCdMwpG-RTiWkJhc"
