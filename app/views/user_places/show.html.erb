@@ -7,17 +7,12 @@
 
 <p>
   <strong>Place:</strong>
-  <%= @user_place.place_id %>
+  <%= @user_place.place %>
 </p>
 
 <p>
   <strong>Desc:</strong>
   <%= @user_place.desc %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @user_place.rating %>
 </p>
 
 <%= link_to 'Edit', edit_user_place_path(@user_place) %> |

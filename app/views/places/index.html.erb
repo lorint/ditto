@@ -1,61 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Places</h1>
-
-<div>
-  <input type="text" id="yelp_location" placeholder="Search Area">
-  <input type="text" id="yelp_business" placeholder="Search Terms">
-  <input type="submit" value="Submit" onclick="loadXMLDoc()">
-</div>
-
-<% location = "santa monica" %>
-<% term = "sushi" %>
-<% resp = Yelp.client.search(location, { term: term }) %>
-
-<% if resp != 'Fail' %>
-<div class="outer_container">
-  <% for i in 0..19 %>
-    <div class="inner_container">
-      <h1 class="title"><%= i + 1 %>) <%= resp.businesses[i].name %></h1>
-      <div class="img_add_container">
-        <a href="<%= resp.businesses[i].url %>">
-          <img class="image" src="<%= resp.businesses[i].image_url %>" />
-        </a>
-        <p class="address"><%= resp.businesses[i].location.address[0] %>,<br><%= resp.businesses[i].location.city %> 
-        <%= resp.businesses[i].location.postal_code %></p>
-      </div>
-        <% leng = resp.businesses[i].categories.length %>
-        <% x = 0 %>
-        <p class="categories">Categories:<br>
-          <% while x < leng %>
-            <%= resp.businesses[i].categories[x][0] %>
-            <% if x < (leng - 1) %>,<% end %>
-            <% x += 1 %>
-          <% end %>
-        </p>
-      <img src="<%= resp.businesses[i].rating_img_url %>" style="margin-left: 72px;"/>
-      <p class="yelp_id">Yelp ID:<br><%= resp.businesses[i].id %></p>
-    </div>
-    <%# yelp_id = resp.businesses[i].id.gsub("-", " ") %>
-    <%#= yelp_id %>
-  <% end %>
-</div>
-<% end %>
-
-<script>
-
-  function loadXMLDoc(){
-    yelp_loc = document.getElementById("yelp_location").value;
-    yelp_term = document.getElementById("yelp_business").value;
-    var req = new XMLHttpRequest();
-    // req.onreadystatechange = function(){
-    //   if(req.readyState == 4 && req.status == 200){
-    //     document.getElementById("yelp_location").innerHTML = req.responseText;
-    //   }
-    // }
-    // req.open("POST", , true);
-    // req.send();
-
-  }
-
-</script>
+<form class="test" id="test1">
+  <input type="text" id="yelp_loc" placeholder="Search Area"><br><br>
+  <input type="text" id="yelp_bus1" placeholder="Favorite Location">
+  <input class="button" id="button1" type="submit" value="Submit" >
+</form>
+<br><br>
+<form class="test" id="test2">
+  <input type="text" id="yelp_bus2" placeholder="Second Favorite Location">
+  <input class="button" type="submit" value="Submit" >
+</form>
+<br><br>
+<form class="test" id="test3">
+  <input type="text" id="yelp_bus3" placeholder="Third Favorite Location">
+  <input class="button" type="submit" value="Submit" >
+</form>

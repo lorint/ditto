@@ -1,8 +1,7 @@
 class CreatePhotos < ActiveRecord::Migration
   def change
     create_table :photos do |t|
-      t.integer :img_id
-      t.string :img_type
+      t.integer :user_id
       t.string :url
 
       t.timestamps null: false
