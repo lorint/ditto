@@ -29,7 +29,7 @@ class UserPlacesController < ApplicationController
     respond_to do |format|
       if @user_place.save
         format.html { redirect_to @user_place, notice: 'User place was successfully created.' }
-        format.json { render :show, status: :created, location: @user_place }
+        format.json { render json: @user_place }
       else
         format.html { render :new }
         format.json { render json: @user_place.errors, status: :unprocessable_entity }
@@ -69,6 +69,6 @@ class UserPlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_place_params
-      params.require(:user_place).permit(:user_id, :place_id, :desc, :rating)
+      params.require(:user_place).permit(:user_id, :place, :desc)
     end
 end

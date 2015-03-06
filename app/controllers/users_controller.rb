@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def yelp_search
+    @yelp = Yelp.client.search(params[:location], { term: params[:business] })
+    respond_with @yelp
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show

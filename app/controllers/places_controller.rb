@@ -1,10 +1,17 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
+  respond_to :json, :html
+
   # GET /places
   # GET /places.json
   def index
     @places = Place.all
+  end
+
+  def yelp_search
+    @yelp = Yelp.client.search(params[:location], { term: params[:business] })
+    respond_with @yelp
   end
 
   # GET /places/1
