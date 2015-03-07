@@ -29,7 +29,7 @@ class UserPlaceCategoriesController < ApplicationController
     respond_to do |format|
       if @user_place_category.save
         format.html { redirect_to @user_place_category, notice: 'User place category was successfully created.' }
-        format.json { render :show, status: :created, location: @user_place_category }
+        format.json { render json: @user_place_category }
       else
         format.html { render :new }
         format.json { render json: @user_place_category.errors, status: :unprocessable_entity }

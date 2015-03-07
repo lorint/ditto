@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Userplace</th>
-      <th>Placecat</th>
+      <th>Category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @user_place_categories.each do |user_place_category| %>
       <tr>
         <td><%= user_place_category.userplace_id %></td>
-        <td><%= user_place_category.placecat_id %></td>
+        <td><%= user_place_category.category %></td>
         <td><%= link_to 'Show', user_place_category %></td>
         <td><%= link_to 'Edit', edit_user_place_category_path(user_place_category) %></td>
         <td><%= link_to 'Destroy', user_place_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
