@@ -5,21 +5,22 @@ Rails.application.routes.draw do
 
   resources :user_place_category_matches
 
+  resources :user_place_categories
+    post '/user_place_categories', to: 'user_place_categories#create', defaults: { format: 'json'}
+
   resources :matches
 
   resources :user_places
+    post '/user_places', to: 'user_places#create', defaults: { format: 'json'}
 
   resources :photos
 
   resources :places
-
-  get '/yelp_api_search', to: 'places#yelp_search', defaults: { format: 'json'}
-
-  post '/user_places', to: 'user_places#create', defaults: { format: 'json'}
+    get '/yelp_api_search', to: 'places#yelp_search', defaults: { format: 'json'}
 
   resources :users
 
-  get 'yelp_api_search', to: 'users#yelp_search', defaults: { format: 'json'}
+  # get 'yelp_api_search', to: 'users#yelp_search', defaults: { format: 'json'}
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -3,25 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 ///// User Place Selection Start /////
+.hidden {
+	visibility: hidden;
+	height: 0px;
+	width: 0px;
+}
+.test {
+	position: absolute;
+	top: 135px;
+	left: 475px;
+}
 #test1 {
-	position: absolute;
-	top: 90px;
-	left: 300px;
-}
-#button1 {
-	position: absolute;
-	top: 20px;
-	left: 140px;
-}
-#test2 {
-	position: absolute;
-	top: 260px;
-	left: 300px;
-}
-#test3 {
-	position: absolute;
-	top: 410px;
-	left: 300px;
+	top: 100px;
 }
 .container {
 	width: 240px;
@@ -32,18 +25,18 @@
 }
 #container1 {
 	position: absolute;
-	top: 50px;
-	right: 300px;
+	top: 250px;
+	right: 740px;
 }
 #container2 {
 	position: absolute;
-	top: 200px;
-	right: 300px;
+	top: 250px;
+	right: 480px;
 }
 #container3 {
 	position: absolute;
-	top: 350px;
-	right: 300px;
+	top: 250px;
+	right: 220px;
 }
 .title {
 	font-size: 12px;
@@ -69,16 +62,7 @@
 	font-size: 10px;
 	margin-top: 20px;
 }
-.categories {
-	width: 100%;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	text-align: center;
-	font-size: 11px;
-}
-.yelp_id {
-	margin-top: 5px;
-	font-size: 10px;
-	text-align: center;
+.answer {
+	float: right;
 }
 ///// User Place Selection End /////

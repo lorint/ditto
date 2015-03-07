@@ -27,23 +27,15 @@ $(document).ready(function(){
   $('#test1').submit(function(event){
     var business = $('#yelp_bus1').val();
     ajaxCall(event, business, 1, idx1);
-    idx1++;
   })
   $('#test2').submit(function(event){
     var business = $('#yelp_bus2').val();
     ajaxCall(event, business, 2, idx2);
-    idx2++;
   })
   $('#test3').submit(function(event){
     var business = $('#yelp_bus3').val();
     ajaxCall(event, business, 3, idx3);
-    idx3++;
   })
-
-  $('#no1').click(function(){
-    console.log('test');
-    // yelpResp(1, idx1);
-  });
 
  	function ajaxCall(event, business, num, idx){
     var location = $('#yelp_loc').val();
@@ -62,42 +54,82 @@ $(document).ready(function(){
           yelpResp(num, idx);
         }
       },
-    })
+    });
   }
+
   function yelpResp(num, idx){
-    console.log(num);
     var receivedResp = localStorage.getItem('sentResp');
     var resp = JSON.parse(receivedResp);
-    console.log(resp.businesses);
-    if(idx == 0){
-      $('body').append("<div class='container' id='container"+num+"' />");
-      $('#container'+num+'').append("<h1 class='title' id='title"+num+"' />",
-                                    "<div class='img_add_cont' id='img_add_cont"+num+"' />",
-                                    "<p class='categories' id='categories"+num+"' />",
-                                    "<button id='no"+num+"' type='button' />");
-      $('#img_add_cont'+num+'').append("<a id='link"+num+"' />", "<p class='address' id='address"+num+"' />");
-      $('#link'+num+'').append("<img class='image' id='image"+num+"' />");
-      $('#address'+num+'').append("<span id='add"+num+"_pt1' />", ", <br>", "<span id='add"+num+"_pt2' />");
-      $('#no'+num+'').html('Incorrect');
+
+    if(num == a){
+      buildDiv(num, idx);
     }
     $('#title'+num+'').html(resp.businesses[idx].name);
     $('#link'+num+'').attr('href', resp.businesses[idx].url);
     $('#image'+num+'').attr('src', resp.businesses[idx].image_url);
     $('#add'+num+'_pt1').html(resp.businesses[idx].location.address[0]);
     $('#add'+num+'_pt2').html(resp.businesses[idx].location.city + " " + resp.businesses[idx].location.postal_code);
-    for (x = 0; x < resp.businesses[idx].categories.length; x++){
-      if(x < (resp.businesses[idx].categories.length - 1)){
-        $('#categories'+num+'').append(resp.businesses[idx].categories[x][0] + ", ");
-      }
-      else{
-        $('#categories'+num+'').append(resp.businesses[idx].categories[x][0]);
-      }
-    }
-    a++;
-    // yelpPost(resp, idx);
   }
 
-  function yelpPost(resp, idx){
+  function buildDiv(num, idx){
+    a++;
+    $('body').append("<div class='container' id='container"+num+"' />");
+    $('#container'+num+'').append("<h1 class='title' id='title"+num+"' />",
+                                  "<div class='img_add_cont' id='img_add_cont"+num+"' />",
+                                  "<button class='answer' id='no"+num+"' type='button' />",
+                                  "<button class='answer' id='yes"+num+"' type='button' />");
+    $('#img_add_cont'+num+'').append("<a id='link"+num+"' />", "<p class='address' id='address"+num+"' />");
+    $('#link'+num+'').append("<img class='image' id='image"+num+"' />");
+    $('#address'+num+'').append("<span id='add"+num+"_pt1' />", ", <br>", "<span id='add"+num+"_pt2' />");
+    $('#yes'+num+'').html('Correct');
+    $('#no'+num+'').html('Incorrect');
+
+    $('#yes1').click(function(){
+      $('#yelp_bus1').remove();
+      $('#button1').remove();
+      $('#no1').remove();
+      $('#yes1').remove();
+      $('#test2').removeClass('hidden');
+      yelpPost(idx1);
+    });
+    $('#yes2').click(function(){
+      $('#test2').remove();
+      $('#no2').remove();
+      $('#yes2').remove();
+      $('#test3').removeClass('hidden');
+      yelpPost(idx2);
+    });
+    $('#yes3').click(function(){
+      $('#test3').remove();
+      $('#no3').remove();
+      $('#yes3').remove();
+      $('#yelp_loc').remove();
+      yelpPost(idx3);
+    });
+
+    $('#no1').click(function(){
+      if(idx1 < 19){
+        idx1++;
+        yelpResp(1, idx1);
+      }
+    });
+    $('#no2').click(function(){
+      if(idx2 < 19){
+        idx2++;
+        yelpResp(2, idx2);
+      }
+    });
+    $('#no3').click(function(){
+      if(idx3 < 19){
+        idx3++;
+        yelpResp(3, idx3);
+      }
+    });
+  }
+
+  function yelpPost(idx){
+    var receivedResp = localStorage.getItem('sentResp');
+    var resp = JSON.parse(receivedResp);
     $.ajax({
       type: "POST",
       url: "/user_places",
@@ -108,6 +140,21 @@ $(document).ready(function(){
       },
       success: function(data){
         console.log('success');
+        var id = data.id
+        for(x = 0; x < resp.businesses[idx].categories.length; x++){
+          $.ajax({
+            type: "POST",
+            url: "/user_place_categories",
+            dataType: "json",
+            data: { user_place_category: { userplace_id: id, category: resp.businesses[idx].categories[x][0] } },
+            error: function(e){
+              console.log(e);
+            },
+            success: function(data){
+              console.log('success');
+            },
+          });
+        };
       },
     });
   }
