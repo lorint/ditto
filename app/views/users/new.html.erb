@@ -17,7 +17,7 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
-      posttodatabase();
+      // posttodatabase();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -75,6 +75,11 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+
+  FB.login(function(response) {
+    // Original FB.login code
+  }, { auth_type: 'reauthenticate' })
+
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
@@ -82,16 +87,17 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       console.log(response)
+      console.log("response email: " + response.email)
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
         // function posttodatabase(response){
           $.ajaxSettings.dataType = "json";
-            // $(document).ready(function(){
-                $.ajax({
+            // $(document).ready(function(){  
+                  ;$.ajax({
                   type: "POST",
                   url: "/users",
                   dataType: "json",
-                  data: { user: { name: response.name } },
+                  data: { user: { name: response.name, email: (response.email && response.email.length > 0) ? response.email  : "null@email.com" } },
                   success: function(response){
                     console.log("sucess")
                   },
