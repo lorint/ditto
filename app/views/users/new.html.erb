@@ -17,6 +17,7 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+      posttodatabase();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -80,14 +81,37 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
+      console.log(response)
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
-    });
-  }
+        // function posttodatabase(response){
+          $.ajaxSettings.dataType = "json";
+            // $(document).ready(function(){
+                $.ajax({
+                  type: "POST",
+                  url: "/users",
+                  dataType: "json",
+                  data: { user: { name: response.name } },
+                  success: function(response){
+                    console.log("sucess")
+                  },
+                  error: function(e){
+                    console.log("error")
+                    console.log(e)
+                  }
+                // })
+            })
+        // }   
+    }
+  // }
 
-       FB.logout(function(response) {
-        // Person is now logged out
-    });
+
+
+
+    //    FB.logout(function(response){
+    //     // Person is now logged out
+    // })
+)}
 </script>
 
 <!--
@@ -102,6 +126,8 @@
 
 <div id="status">
 </div>
+
+<%= link_to "Log in with Facebook", "/auth/facebook" %>
 
 </body>
 

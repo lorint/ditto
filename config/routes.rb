@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :match_events
 
   resources :events
@@ -21,7 +22,17 @@ Rails.application.routes.draw do
 
   resources :users
 
-  
+
+  get '/login', :to => 'sessions#new', :as => :login
+  # create a simple login form where the user will see a simple “Connect with Facebook” link.
+  get '/auth/:provider/callback', :to => 'sessions#create'
+  # catch the provider’s callback. After a user authorizes your app,
+  # the provider redirects the user to this url, so we can make use of their data.
+  get '/auth/failure', :to => 'sessions#failure'
+  # when there’s a problem, or if the user didn’t authorize our application.
+
+
+  get '/logout', :to => 'sessions#destroy'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

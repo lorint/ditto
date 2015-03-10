@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303035353) do
+ActiveRecord::Schema.define(version: 20150308234605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authorizations", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -102,8 +110,12 @@ ActiveRecord::Schema.define(version: 20150303035353) do
     t.string   "rel_type"
     t.string   "location"
     t.integer  "radius"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "encrypted_password"
   end
 
 end
