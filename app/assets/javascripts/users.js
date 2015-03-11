@@ -237,6 +237,7 @@ $(document).ready(function (){
           console.log(e);
         },
         success: function(user){
+          console.log(user);
           if(user == null){
             console.log('testing');
             $.ajax({
@@ -251,9 +252,13 @@ $(document).ready(function (){
               },
               success: function(data){
                 console.log("created user");
+                document.location.href = '/users/new';
               }
             });
-          };
+          }
+          else if(user != null){
+            document.location.href = "/users/" + user.id;
+          }
         }
       });
     }
