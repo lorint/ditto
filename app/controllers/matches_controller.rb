@@ -1,10 +1,17 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
 
+  respond_to :json, :html
+
   # GET /matches
   # GET /matches.json
   def index
     @matches = Match.all
+  end
+
+  def grab
+    @resp = User.all
+    respond_with @resp
   end
 
   # GET /matches/1

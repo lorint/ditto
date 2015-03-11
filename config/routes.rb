@@ -10,9 +10,10 @@ Rails.application.routes.draw do
     post '/user_place_categories', to: 'user_place_categories#create', defaults: { format: 'json'}
 
   resources :matches
+    get '/grab', to: 'matches#grab', defaults: { format: 'json'}
 
   resources :user_places
-    # post '/user_places', to: 'user_places#create', defaults: { format: 'json'}
+    post '/user_places', to: 'user_places#create', defaults: { format: 'json'}
 
   resources :photos
 
@@ -20,19 +21,20 @@ Rails.application.routes.draw do
     get '/yelp_api_search', to: 'places#yelp_search', defaults: { format: 'json'}
 
   resources :users
+    get '/user_search', to: 'users#user_search', defaults: { format: 'json'}
 
   # get 'yelp_api_search', to: 'users#yelp_search', defaults: { format: 'json'}
 
-  get '/login', :to => 'sessions#new', :as => :login
+  get '/login', to: 'sessions#new', as: :login
   # create a simple login form where the user will see a simple “Connect with Facebook” link.
-  get '/auth/:provider/callback', :to => 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create'
   # catch the provider’s callback. After a user authorizes your app,
   # the provider redirects the user to this url, so we can make use of their data.
-  get '/auth/failure', :to => 'sessions#failure'
+  get '/auth/failure', to: 'sessions#failure'
   # when there’s a problem, or if the user didn’t authorize our application.
 
 
-  get '/logout', :to => 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

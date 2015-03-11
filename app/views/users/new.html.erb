@@ -84,30 +84,40 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      console.log(response)
-      console.log("response email: " + response.email)
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-        // function posttodatabase(response){
-          $.ajaxSettings.dataType = "json";
-            // $(document).ready(function(){  
-                  ;$.ajax({
-                  type: "POST",
-                  url: "/users",
-                  dataType: "json",
-                  data: { user: { name: response.name, email: (response.email && response.email.length > 0) ? response.email  : "null@email.com" } },
-                  success: function(response){
-                    console.log("sucess")
-                  },
-                  error: function(e){
-                    console.log("error")
-                    console.log(e)
-                  }
-                // })
+    FB.api('/me', function (fbResp) {
+      document.getElementById('status').innerHTML = 'Thanks for logging in, ' + fbResp.name + '!';
+      $.ajaxSettings.dataType = "json";
+
+      $.ajax({
+        type: "GET",
+        url: "/user_search",
+        dataType: "json",
+        data: { fb_id: fbResp.id },
+        error: function(e){
+          console.log("error");
+          console.log(e);
+        },
+        success: function(user){
+          if(user == null){
+            console.log('testing');
+            $.ajax({
+              type: "POST",
+              url: "/users",
+              dataType: "json",
+              data: { user: { fb_id: fbResp.id, name: fbResp.name, gender: fbResp.gender,
+                email: (fbResp.email && fbResp.email.length > 0) ? fbResp.email  : "null@email.com" } },
+                error: function(e){
+                  console.log("error");
+                  console.log(e);
+                },
+              success: function(data){
+                console.log("created user");
+              }
             })
-        // }   
+          }
+        }
+      })
+
     }
   // }
 

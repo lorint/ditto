@@ -79,11 +79,11 @@ ActiveRecord::Schema.define(version: 20150308031340) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "handle"
-    t.string   "password"
+    t.string   "fb_id"
+    t.string   "name"
+    t.string   "gender"
     t.string   "email"
     t.integer  "age"
-    t.string   "gender"
     t.string   "rel_type"
     t.string   "location"
     t.integer  "radius"

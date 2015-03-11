@@ -2,10 +2,22 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # validate_presence_of :email, :format { regex }
 
+  respond_to :json, :html
+
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+  end
+
+  def grab
+    @resp = User.all
+    respond_with @resp
+  end
+
+  def user_search
+    @resp = User.where("fb_id = '#{params[:fb_id]}'").first
+    respond_with @resp
   end
 
   def yelp_search
@@ -75,6 +87,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:handle, :password, :email, :age, :gender, :rel_type, :location, :radius, :name, :encrypted_password, :uid)
+      params.require(:user).permit(:name, :email, :age, :gender, :rel_type, :location, :radius, :fb_id)
     end
 end

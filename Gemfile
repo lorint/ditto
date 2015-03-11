@@ -23,17 +23,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Yelp Gems
 gem 'yelp', require: 'yelp'
-
 gem "figaro"
 
+# Used for making AJAX calls
 gem 'responders', '~> 2.0'
 
+# Facebook Login Gems
 gem 'omniauth' 
-
 gem 'omniauth-facebook'
- # Facebook authentication
-
 gem "koala", "~> 1.10.0rc" # Facebook API
 
 # Use ActiveModel has_secure_password
