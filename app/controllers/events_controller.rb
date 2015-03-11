@@ -3,8 +3,10 @@ class EventsController < ApplicationController
 
   # GET /events
   # GET /events.json
-  def index
-    @events = Event.all
+  def index()
+    @response = HTTParty.get("https://www.eventbrite.com/xml/event_search?app_key=2IGSRNVZFHB2YHAE4X&category=#{sales}&sort_by=date&date=Future&max=5")
+    @display = @response['events']['event']
+    # {params["category"]// category = @matches.upcm_id
   end
 
   # GET /events/1
