@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :matches
 
   resources :user_places
-    post '/user_places', to: 'user_places#create', defaults: { format: 'json'}
+    # post '/user_places', to: 'user_places#create', defaults: { format: 'json'}
 
   resources :photos
 
@@ -21,9 +21,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-<<<<<<< HEAD
   # get 'yelp_api_search', to: 'users#yelp_search', defaults: { format: 'json'}
-=======
 
   get '/login', :to => 'sessions#new', :as => :login
   # create a simple login form where the user will see a simple “Connect with Facebook” link.
@@ -36,7 +34,6 @@ Rails.application.routes.draw do
 
   get '/logout', :to => 'sessions#destroy'
 
->>>>>>> 5fd26586475c09d6d5c55871d3414fcb18a024c7
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

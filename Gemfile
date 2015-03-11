@@ -27,16 +27,14 @@ gem 'yelp', require: 'yelp'
 
 gem "figaro"
 
-<<<<<<< HEAD
 gem 'responders', '~> 2.0'
-=======
+
 gem 'omniauth' 
 
 gem 'omniauth-facebook'
  # Facebook authentication
 
 gem "koala", "~> 1.10.0rc" # Facebook API
->>>>>>> 5fd26586475c09d6d5c55871d3414fcb18a024c7
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
