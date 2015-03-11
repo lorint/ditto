@@ -93,11 +93,11 @@
         // function posttodatabase(response){
           $.ajaxSettings.dataType = "json";
             // $(document).ready(function(){  
-                  ;$.ajax({
+                  $.ajax({
                   type: "POST",
                   url: "/users",
                   dataType: "json",
-                  data: { user: { name: response.name, email: (response.email && response.email.length > 0) ? response.email  : "null@email.com" } },
+                  data: { user: { name: response.name, gender: response.gender, age: response.age, email: (response.email && response.email.length > 0) ? response.email  : "null@email.com" } },
                   success: function(response){
                     console.log("sucess")
                   },
