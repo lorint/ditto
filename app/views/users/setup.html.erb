@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <h1><%= @user.name %></h1>
+
   <div class="field">
     <%= f.label 'Dating' %>
     <%= f.label 'Friendship' %><br>
@@ -41,7 +43,24 @@
     <%= f.label 'Distance Willing to Travel' %><br>
     <%= f.number_field :radius %>
   </div>
-  <div class="actions">
+  <div class="hidden actions" id="setup_submit">
     <%= f.submit %>
   </div>
 <% end %>
+
+<form class="test" id="test1">
+  <p class="hidden" id="current_user"><%= @user.id %></p>
+  <input type="text" id="yelp_loc" placeholder="Search Area"><br><br>
+  <input type="text" id="yelp_bus1" placeholder="Favorite Location">
+  <input class="button" id="button1" type="submit" value="Submit" >
+</form>
+<br><br>
+<form class="hidden test" id="test2">
+  <input type="text" id="yelp_bus2" placeholder="Second Favorite Location">
+  <input class="button" id="button2" type="submit" value="Submit" >
+</form>
+<br><br>
+<form class="hidden test" id="test3">
+  <input type="text" id="yelp_bus3" placeholder="Third Favorite Location">
+  <input class="button" id="button3" type="submit" value="Submit" >
+</form>

@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Handle:</strong>
-  <%= @user.handle %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
+  <strong>Name:</strong>
+  <%= @user.name %>
 </p>
 
 <p>
@@ -31,13 +26,18 @@
 </p>
 
 <p>
+  <strong>Looking For:</strong>
+  <%= @user.orientation %>
+</p>
+
+<p>
   <strong>Location:</strong>
   <%= @user.location %>
 </p>
 
 <p>
   <strong>Radius:</strong>
-  <%= @user.radius %>
+  <%= @user.radius %> miles.
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

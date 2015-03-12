@@ -8,6 +8,7 @@ $(document).ready(function (){
   var idx1 = 0;
   var idx2 = 0;
   var idx3 = 0;
+  var currentUser = document.getElementById('current_user').innerHTML
   $('#test1').submit(function (event){
     var business = $('#yelp_bus1').val();
     ajaxCall(event, business, 1, idx1);
@@ -88,6 +89,7 @@ $(document).ready(function (){
       $('#no3').remove();
       $('#yes3').remove();
       $('#yelp_loc').remove();
+      $('#setup_submit').removeClass('hidden');
       yelpPost(idx3);
     });
 
@@ -118,7 +120,7 @@ $(document).ready(function (){
       type: "POST",
       url: "/user_places",
       dataType: "json",
-      data: { user_place: { place: resp.businesses[idx].id } },
+      data: { user_place: { user_id: currentUser , place: resp.businesses[idx].id } },
       error: function(e){
         console.log(e);
       },
@@ -238,6 +240,7 @@ $(document).ready(function (){
         },
         success: function(user){
           console.log(user);
+
           if(user == null){
             console.log('testing');
             $.ajax({
@@ -252,12 +255,12 @@ $(document).ready(function (){
               },
               success: function(data){
                 console.log("created user");
-                document.location.href = '/users/new';
+                document.location.href = '/users/'+user.id+'/setup/';
               }
             });
           }
           else if(user != null){
-            document.location.href = "/users/" + user.id;
+            document.location.href = '/users/'+user.id+'/edit/';
           }
         }
       });

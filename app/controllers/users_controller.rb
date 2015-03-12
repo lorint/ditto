@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :setup, :edit, :update, :destroy]
   # validate_presence_of :email, :format { regex }
 
   respond_to :json, :html
@@ -33,6 +33,10 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+  end
+
+  # GET /users/1/setup
+  def setup
   end
 
   # GET /users/1/edit
@@ -87,6 +91,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :age, :gender, :rel_type, :location, :radius, :fb_id)
+      params.require(:user).permit(:name, :email, :age, :gender, :rel_type, :location, :radius, :fb_id, :orientation)
     end
 end
