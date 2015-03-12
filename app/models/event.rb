@@ -1,8 +1,6 @@
 class Event < ActiveRecord::Base
-	has_many :match_events
-	has_many :matches, through: :match_events
-<<<<<<< HEAD
-=======
-	include HTTParty
->>>>>>> 5fd26586475c09d6d5c55871d3414fcb18a024c7
+	has_many :match_events, :class_name => "MatchEvent", :foreign_key => "match_id"
+	has_many :matches, :class_name => "Match", :foreign_key => "upcm_id"
+	# through: :match_events
+
 end

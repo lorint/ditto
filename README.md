@@ -35,3 +35,23 @@ If you want to delete the branch:
 git branch -d <branchname>
 
 If you want to continue with work on the branch, checkout back to it and continue working.
+
+---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+
+RSpec -
+
+Arsamess-MacBook-Air:ditto arsamesqajar$ rspec --init
+  create   .rspec
+  create   spec/spec_helper.rb
+Arsamess-MacBook-Air:ditto arsamesqajar$ rake db:test:prepare
+Arsamess-MacBook-Air:ditto arsamesqajar$ rails g rspec:install
+   identical  .rspec
+       exist  spec
+    conflict  spec/spec_helper.rb
+Overwrite /Users/arsamesqajar/Desktop/ditto/spec/spec_helper.rb? enter "h" for help) [Ynaqdh] Y
+       force  spec/spec_helper.rb
+      create  spec/rails_helper.rb
+Arsamess-MacBook-Air:ditto arsamesqajar$ bundle exec rspec
+
+
