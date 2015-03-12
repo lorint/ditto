@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :users
     get '/user_search', to: 'users#user_search', defaults: { format: 'json'}
+    get '/users/:id/setup', to: 'users#setup'
 
   # get 'yelp_api_search', to: 'users#yelp_search', defaults: { format: 'json'}
 
