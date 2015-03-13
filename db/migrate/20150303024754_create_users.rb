@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :rel_type
       t.string :location
       t.integer :radius
+      t.string :orientation
 
       t.timestamps null: false
     end

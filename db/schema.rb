@@ -87,8 +87,9 @@ ActiveRecord::Schema.define(version: 20150308031340) do
     t.string   "rel_type"
     t.string   "location"
     t.integer  "radius"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "orientation"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
