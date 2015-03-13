@@ -4,4 +4,9 @@ class Match < ActiveRecord::Base
 	has_many :user_place_category_matches, :class_name => "UserPlaceCategory", :foreign_key => "userplace_id"
 	has_many :user_place_categories, :foreign_key => "userplace_id"
 	# through: :user_place_category_matches
+
+	def index
+		Post.find_by_sql 'SELECT* FROM '
+	end
+
 end

@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 	has_many :user_places
 	has_many :user_place_categories, through: :user_places
 	has_many :matches
-	validates :name, :email, presence: true
+	validates :name, presence: true
+	# :email
 	has_many :authorizations
 	# in case we ever include oauth beyond FB, eg Twitter, Insta, etc
 
