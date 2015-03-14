@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     post '/user_places', to: 'user_places#create', defaults: { format: 'json'}
 
   resources :photos
-
+  resources :avatar
   resources :places
     get '/yelp_api_search', to: 'places#yelp_search', defaults: { format: 'json'}
 

@@ -19,7 +19,7 @@
     		    console.log('success');
     		    resp = data;
 
-    				var currentUser = resp[0];
+    				var currentUser = resp[1];
     				var currentUserLoc = currentUser.location;
 
         		geocoder.getLocations(currentUserLoc, function (response) {

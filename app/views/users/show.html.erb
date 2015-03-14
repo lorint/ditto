@@ -14,7 +14,10 @@
   <strong>Age:</strong>
   <%= @user.age %>
 </p>
-
+<p>
+  <strong>image:</strong>
+  <%= image_tag @user.avatar.url %>
+</p>
 <p>
   <strong>Gender:</strong>
   <%= @user.gender %>

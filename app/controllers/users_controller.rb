@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     respond_with @resp
   end
 
+
+
   def yelp_search
     @yelp = Yelp.client.search(params[:location], { term: params[:business] })
     respond_with @yelp
@@ -42,8 +44,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-  end
-
+  
+end
   # POST /users
   # POST /users.json
   def create
@@ -66,10 +68,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        # format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { render :edit, avatar: @user }
+        #format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -88,10 +90,11 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :age, :gender, :rel_type, :location, :radius, :fb_id, :orientation)
-    end
+      params.require(:user).permit(:name, :email, :age, :avatar, :gender, :rel_type, :location, :radius, :fb_id, :orientation)
+    end 
 end

@@ -14,6 +14,16 @@ class MatchesController < ApplicationController
     respond_with @resp
   end
 
+  def grab_place
+    @place = UserPlace.where("user_id = '#{params[:user_id]}'")
+    respond_with @place
+  end
+
+  def grab_category
+    @place = UserPlaceCategory.where("userplace_id = '#{params[:userplace_id]}'")
+    respond_with @place
+  end
+
   # GET /matches/1
   # GET /matches/1.json
   def show

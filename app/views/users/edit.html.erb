@@ -41,7 +41,11 @@
     <%= f.label 'Distance Willing to Travel' %><br>
     <%= f.number_field :radius %>
   </div>
-  <div class="actions">
+    <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

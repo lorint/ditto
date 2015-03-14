@@ -41,7 +41,8 @@ gem "koala", "~> 1.10.0rc" # Facebook API
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
