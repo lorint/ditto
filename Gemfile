@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+#gem 'bootstrap-sass', '~> 3.2.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -42,7 +42,7 @@ gem "koala", "~> 1.10.0rc" # Facebook API
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
