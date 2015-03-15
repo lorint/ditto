@@ -10,7 +10,6 @@ class PlacesController < ApplicationController
   end
 
   def yelp_search
-    @yelp = Yelp.client.search(params[:location], { term: params[:business] })
     respond_with @yelp
   end
 

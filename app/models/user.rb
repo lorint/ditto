@@ -18,18 +18,25 @@ class User < ActiveRecord::Base
 
 	def add_provider(auth_hash)
   	# Check if the provider already exists, so we don't add it twice
-	  unless authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
-	    Authorization.create user: self, provider: auth_hash["provider"], uid: auth_hash["uid"]
-  	end
-  end
+		unless authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+		    Authorization.create user: self, provider: auth_hash["provider"], uid: auth_hash["uid"]
+		end
+	end
   
+
+  def nearby_users
+  	User.find_by_sql "SELECT name,distance(#{self.latitude},#{self.longitude}
+  				,latitude,longitude)
+  			 FROM users left outer join user_places on users.id = user_places.user_id
+  			 WHERE users.id != #{self.id} AND distance(#{self.latitude},#{self.longitude},latitude,longitude)<radius AND distance(#{self.latitude},#{self.longitude},latitude,longitude)<#{self.radius}" 
+  end
+
 
   	def find_lat_long_for_zipcode
   		response = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{self.location}")
   		location = response.parsed_response['results'].first['geometry']['location']
   		self.latitude = location['lat']
   		self.longitude = location['lng']
-  			self.find_by "SELECT name,distance(current_user.latitude,current_user.longitude,latitude,longitude) FROM users WHERE id != current_user AND distance(current_user.latitude,current_user.longitude,latitude,longitude)<radius AND distance(current_user.latitude,current_user.longitude,latitude,longitude)<current_user.radius" 
   	end
 # SELECT name,distance(34.0448583,-118.4484367,latitude,longitude) FROM users WHERE id != 7 AND distance(34.0448583,-118.4484367,latitude,longitude)<radius AND distance(34.0448583,-118.4484367,latitude,longitude)<6 
   	 # CREATE OR REPLACE FUNCTION distance(lat1 FLOAT, lon1 FLOAT, lat2 FLOAT, lon2 FLOAT) RETURNS FLOAT AS $$
@@ -40,6 +47,7 @@ class User < ActiveRecord::Base
 				# 		    RETURN sqrt(x * x + y * y);                               
 			
 
+	
   
 end
 

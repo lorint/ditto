@@ -4,7 +4,11 @@ class UserPlacesController < ApplicationController
   # GET /user_places
   # GET /user_places.json
   def index
-    @user_places = UserPlace.all
+    if params[:term] != nil
+      @places = Place.yelp_search(params[:term], current_user.location)
+    else
+      @places = Place.all
+    end
   end
 
   # GET /user_places/1
