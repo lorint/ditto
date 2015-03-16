@@ -40,5 +40,16 @@
   <%= @user.radius %> miles.
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= form_for @user do |f| %>
+  <h2>Pick places you like:</h2>
+  This will help us identify other users that have your same interests :)<br />
+  <%= f.collection_check_boxes :place_ids, @user.nearby_places, :id, :name do |b| %>
+    <%= b.label class:"label-checkbox" do%>
+      <%= b.check_box %><%= b.text %>
+    <% end %><br />
+  <% end %><br />
+  <%= f.submit "Save place choices" %>
+<% end %>
+
+
+<%= link_to 'Edit Profile', edit_user_path(@user) %>

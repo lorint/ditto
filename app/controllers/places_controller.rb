@@ -75,6 +75,7 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :address, :desc)
+      # user_ids allows for collection_checkboxes to work
+      params.require(:place).permit(:name, :address, :desc, user_ids: [])
     end
 end

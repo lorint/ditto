@@ -23,11 +23,24 @@ Place.destroy_all
 Category.destroy_all
 places = Yelp.client.search("90404", { term: "Pizza" }).businesses
 places.each do |p|
-	place = Place.find_or_create_by(:name => p.name, yelpid: p.id)
+	coordinate = p.location.coordinate
+	place = Place.find_or_create_by(:name => p.name, yelpid: p.id,
+	  lat: coordinate.latitude, lng: coordinate.longitude)
 	p.categories.each do |c|
 		cat = Category.find_or_create_by(:name => c[1], friendly_name: c[0])
 		place.place_categories.create(category: cat)
 	end
 end
 
+
+# Also put into the database the distance function:
+
+# CREATE OR REPLACE FUNCTION distance(lat1 FLOAT, lon1 FLOAT, lat2 FLOAT, lon2 FLOAT) RETURNS FLOAT AS $$
+# DECLARE                                                   
+#     x float = 69.1 * (lat2 - lat1);                           
+#     y float = 69.1 * (lon2 - lon1) * cos(lat1 / 57.3);        
+# BEGIN                                                     
+#     RETURN sqrt(x * x + y * y);                               
+# END  
+# $$ LANGUAGE plpgsql;
 

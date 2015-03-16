@@ -2,6 +2,7 @@ require 'net/http'
 class User < ActiveRecord::Base
 	has_many :photos
 	has_many :user_places
+	has_many :places, through: :user_places
 	has_many :user_place_categories, through: :user_places
 	has_many :matches
 	validates :name, :email, presence: true
@@ -31,6 +32,12 @@ class User < ActiveRecord::Base
   			 WHERE users.id != #{self.id} AND distance(#{self.latitude},#{self.longitude},latitude,longitude)<radius AND distance(#{self.latitude},#{self.longitude},latitude,longitude)<#{self.radius}" 
   end
 
+  def nearby_places
+    Place.find_by_sql "SELECT id, name,
+    	distance(#{self.latitude}, #{self.longitude}, lat, lng)
+        FROM places
+        WHERE distance(#{self.latitude},#{self.longitude},lat,lng)<#{radius}"
+  end
 
   	def find_lat_long_for_zipcode
   		response = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{self.location}")

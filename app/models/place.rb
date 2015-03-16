@@ -1,7 +1,7 @@
 class Place < ActiveRecord::Base
 	has_many :place_categories
 	has_many :user_places
-	
+	has_many :users, through: :user_places
 
 	def yelp_search(str,loc) 
 		response = []
@@ -16,6 +16,5 @@ class Place < ActiveRecord::Base
     end
     response
 	end
-
 
 end
